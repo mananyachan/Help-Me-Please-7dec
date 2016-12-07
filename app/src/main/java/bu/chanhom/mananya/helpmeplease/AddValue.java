@@ -25,6 +25,7 @@ public class AddValue extends FragmentActivity implements OnMapReadyCallback {
     private EditText editText;
     private Button rangeButton, soundButton, favoriteButton, saveButton;
     private int rangeAnInt, soundAnInt, favoriteAnInt = 0;
+    private double latADouble, lngADouble;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -161,9 +162,24 @@ public class AddValue extends FragmentActivity implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng centerLatLng = new LatLng(13.711390, 100.581730);
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(centerLatLng, 16));
+
+        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latLng) {
+
+                latADouble = latLng.latitude;
+                lngADouble = latLng.longitude;
+
+                mMap.clear();
+                mMap.addMarker(new MarkerOptions().position(latLng));
+
+                Log.d("7decV1", "(lat, lng) == " + "(" + latADouble + ", " + lngADouble + ")");
+
+            }
+        });
+
+
     } // onMap
 }// Main Class
