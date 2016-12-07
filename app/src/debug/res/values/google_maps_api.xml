@@ -17,9 +17,12 @@
 
     นี่คือ apiKey ของ หมิว นะจ้ะ AIzaSyD7mtkOU5wUfzqN_Ci76ZMW1txkIUG-5BI
 
+    เตรื่องโน้ตบุค มาสเตอร์ AIzaSyBUBUjcQgyycuVUEYgnypx1ILLwRO-vKLU
+
+    เครื่องแมค มาสเตอร์ AIzaSyA98Z_EpLz2_EoMKTv68kBKo6ixGPOrY4U
 
     -->
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">
-        AIzaSyBUBUjcQgyycuVUEYgnypx1ILLwRO-vKLU
+        AIzaSyA98Z_EpLz2_EoMKTv68kBKo6ixGPOrY4U
     </string>
 </resources>

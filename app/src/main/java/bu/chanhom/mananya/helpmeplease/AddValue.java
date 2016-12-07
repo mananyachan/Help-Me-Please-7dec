@@ -27,10 +27,11 @@ public class AddValue extends FragmentActivity implements OnMapReadyCallback {
     private int rangeAnInt, soundAnInt, favoriteAnInt = 0;
     private double latADouble, lngADouble;
     private String titleString, rangeString, soundString,
-            favoriteString, latString, lngString;
+            favoriteString = "0", latString, lngString;
     private MyConstant myConstant;
     private int[] avataInts;
     private boolean rangABoolean = true, soundABoolean = true, locationABoolean = true;
+    private MyManage myManage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +41,7 @@ public class AddValue extends FragmentActivity implements OnMapReadyCallback {
         //Setup
         myConstant = new MyConstant();
         avataInts = myConstant.getAvataInts();
-
+        myManage = new MyManage(AddValue.this);
 
 
         //Bind Widget
@@ -109,7 +110,19 @@ public class AddValue extends FragmentActivity implements OnMapReadyCallback {
 
     private void uploadValueToSQLite() {
 
+        Log.d("7decV2", "Title = " + titleString);
+        Log.d("7decV2", "Rang = " + rangeString);
+        Log.d("7decV2", "soundString = " + soundString);
+        Log.d("7decV2", "Favorite = " + favoriteString);
+        Log.d("7decV2", "Lat = " + latString);
+        Log.d("7decV2", "Lng = " + lngString);
 
+        myManage.addValue(titleString, rangeString, soundString,
+                favoriteString, latString, latString);
+
+        Toast.makeText(AddValue.this, "Save Data OK", Toast.LENGTH_SHORT).show();
+
+        finish();
 
 
     }
@@ -120,6 +133,7 @@ public class AddValue extends FragmentActivity implements OnMapReadyCallback {
             public void onClick(View view) {
 
                 favoriteAnInt = 1;
+                favoriteString = Integer.toString(favoriteAnInt);
                 Toast.makeText(AddValue.this, getResources().getString(R.string.favorite) + " แล้ว !! ", Toast.LENGTH_SHORT).show();
 
             }//onClick
@@ -146,6 +160,7 @@ public class AddValue extends FragmentActivity implements OnMapReadyCallback {
                     public void onClick(DialogInterface dialogInterface, int i) {
 
                         soundAnInt = i;
+                        soundString = Integer.toString(i);
 
                         playSound(ints[i]);
 
@@ -231,6 +246,9 @@ public class AddValue extends FragmentActivity implements OnMapReadyCallback {
 
                 latADouble = latLng.latitude;
                 lngADouble = latLng.longitude;
+
+                latString = Double.toString(latADouble);
+                lngString = Double.toString(lngADouble);
 
                 mMap.clear();
                 mMap.addMarker(new MarkerOptions().position(latLng));
