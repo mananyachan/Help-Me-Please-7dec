@@ -16,8 +16,8 @@ public class MainActivity extends AppCompatActivity {
     //Explicit
     private Button button;
     private ListView listView;
-//    private String[] titleStrings, rangeStrings, soundStrings,
-//            latStrings, lngStrings, actionStrings;
+    private String[] titleStrings, rangeStrings, soundStrings,
+            latStrings, lngStrings, actionStrings;
 
 
 
