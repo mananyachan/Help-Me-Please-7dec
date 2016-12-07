@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Help Me Please</string>
+
+    <string name="titleMain">เพิ่มปลายทาง</string>
+    <string name="titleMain2">หรือเลือกรายการที่ชื่นชอบ</string>
+    <string name="title_activity_add_value">Map</string>
+    <string name="range">โปรดเลือกระยะ</string>
+    <string name="sound">โปรดเลือกเสียงเตือน</string>
+    <string name="favorite">เพิ่มรายการโปรด</string>
+    <string name="save">บันทึกการแจ้งเตือน</string>
+
+
+
+</resources>
