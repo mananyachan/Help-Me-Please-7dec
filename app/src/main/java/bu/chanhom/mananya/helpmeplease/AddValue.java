@@ -34,7 +34,7 @@ public class AddValue extends FragmentActivity implements OnMapReadyCallback {
 
 
         //Bind Widget
-        bindWidget();
+        bindWidget();  //นี่คือการผูกตัวแปรกับ widget บน activity
 
         //rangButton Controller
         rangButtonController();
