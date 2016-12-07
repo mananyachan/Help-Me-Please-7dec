@@ -30,6 +30,7 @@ public class AddValue extends FragmentActivity implements OnMapReadyCallback {
             favoriteString, latString, lngString;
     private MyConstant myConstant;
     private int[] avataInts;
+    private boolean rangABoolean = true, soundABoolean = true, locationABoolean = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,11 +82,35 @@ public class AddValue extends FragmentActivity implements OnMapReadyCallback {
                             myConstant.getTitleHaveSpaceString(),
                             myConstant.getMessageHaveSpaceString());
                     myAlert.myDialog();
+                } else if (rangABoolean) {
+                    MyAlert myAlert = new MyAlert(AddValue.this, avataInts[0],
+                            myConstant.getTitleRangString(),
+                            myConstant.getMessageRangString());
+                    myAlert.myDialog();
+                } else if (soundABoolean) {
+                    MyAlert myAlert = new MyAlert(AddValue.this, avataInts[3],
+                            myConstant.getTitleSoundString(),
+                            myConstant.getMessageSoundString());
+                    myAlert.myDialog();
+                } else if (locationABoolean) {
+                    MyAlert myAlert = new MyAlert(AddValue.this, avataInts[3],
+                            myConstant.getTitleLocateString(),
+                            myConstant.getMessageLocateString());
+                    myAlert.myDialog();
+                } else {
+                    uploadValueToSQLite();
                 }
 
 
             }//onClick
         });
+
+    }
+
+    private void uploadValueToSQLite() {
+
+
+
 
     }
 
@@ -107,6 +132,8 @@ public class AddValue extends FragmentActivity implements OnMapReadyCallback {
         soundButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                soundABoolean = false;
 
                 final CharSequence[] charSequences = new CharSequence[]{"Bird", "Cat", "Cow", "Dog", "Elephant"};
                 final int[] ints = new int[]{R.raw.bird, R.raw.cat, R.raw.cow, R.raw.dog, R.raw.elephant};
@@ -140,6 +167,8 @@ public class AddValue extends FragmentActivity implements OnMapReadyCallback {
             @Override
             public void onClick(View view) {
 
+                rangABoolean = false;
+
                 final CharSequence[] charSequences = new CharSequence[]{"200 เมตร", "400 เมตร", "600 เมตร", "800 เมตร"};
                 AlertDialog.Builder builder = new AlertDialog.Builder(AddValue.this);
                 builder.setCancelable(false);
@@ -149,6 +178,7 @@ public class AddValue extends FragmentActivity implements OnMapReadyCallback {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         rangeAnInt = ((i + 1) * 2) * 100;
+                        rangeString = Integer.toString(rangeAnInt);
                         Log.d("17novV1", "range ==> " + rangeAnInt);
                         rangeButton.setText(charSequences[i].toString());
                         dialogInterface.dismiss();
@@ -196,6 +226,8 @@ public class AddValue extends FragmentActivity implements OnMapReadyCallback {
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
+
+                locationABoolean = false;
 
                 latADouble = latLng.latitude;
                 lngADouble = latLng.longitude;
