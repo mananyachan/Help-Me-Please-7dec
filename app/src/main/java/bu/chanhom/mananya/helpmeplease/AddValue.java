@@ -26,11 +26,20 @@ public class AddValue extends FragmentActivity implements OnMapReadyCallback {
     private Button rangeButton, soundButton, favoriteButton, saveButton;
     private int rangeAnInt, soundAnInt, favoriteAnInt = 0;
     private double latADouble, lngADouble;
+    private String titleString, rangeString, soundString,
+            favoriteString, latString, lngString;
+    private MyConstant myConstant;
+    private int[] avataInts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.my_addvalue_layout);
+
+        //Setup
+        myConstant = new MyConstant();
+        avataInts = myConstant.getAvataInts();
+
 
 
         //Bind Widget
@@ -45,6 +54,8 @@ public class AddValue extends FragmentActivity implements OnMapReadyCallback {
         //FavoriteButton Controller
         fraoriteButtonController();
 
+        //Save Button
+        saveButtonController();
 
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
@@ -53,6 +64,30 @@ public class AddValue extends FragmentActivity implements OnMapReadyCallback {
         mapFragment.getMapAsync(this);
 
     } // Main Method
+
+    private void saveButtonController() {
+
+
+        //saveButton Controller
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                titleString = editText.getText().toString().trim();
+
+                //Check Space
+                if (titleString.equals("")) {
+                    MyAlert myAlert = new MyAlert(AddValue.this, avataInts[1],
+                            myConstant.getTitleHaveSpaceString(),
+                            myConstant.getMessageHaveSpaceString());
+                    myAlert.myDialog();
+                }
+
+
+            }//onClick
+        });
+
+    }
 
     private void fraoriteButtonController() {
         favoriteButton.setOnClickListener(new View.OnClickListener() {
@@ -65,14 +100,7 @@ public class AddValue extends FragmentActivity implements OnMapReadyCallback {
             }//onClick
         });
 
-        //saveButton Controller
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-
-            }//onClick
-        });
     }
 
     private void soundButtonController() {
