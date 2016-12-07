@@ -3,8 +3,8 @@ package bu.chanhom.mananya.helpmeplease;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.media.MediaPlayer;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -32,43 +32,53 @@ public class AddValue extends FragmentActivity implements OnMapReadyCallback {
         setContentView(R.layout.my_addvalue_layout);
 
         //Bind Widget
-        editText = (EditText) findViewById(R.id.editText);
-        rangeButton = (Button) findViewById(R.id.button2);
-        soundButton = (Button) findViewById(R.id.button3);
-        favoriteButton = (Button) findViewById(R.id.button4);
-        saveButton = (Button) findViewById(R.id.button5);
+        bindWidget();
 
         //rangButton Controller
-        rangeButton.setOnClickListener(new View.OnClickListener() {
+        rangButtonController();
+
+        //soundButton Controller
+        soundButtonController();
+
+        //FavoriteButton Controller
+        fraoriteButtonController();
+
+
+
+        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
+
+    } // Main Method
+
+    private void fraoriteButtonController() {
+        favoriteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                final CharSequence[] charSequences = new  CharSequence[]{"200 เมตร","400 เมตร","600 เมตร","800 เมตร"};
-                AlertDialog.Builder builder = new AlertDialog.Builder(AddValue.this);
-                builder.setCancelable(false);
-                builder.setIcon(R.drawable.doremon48);
-                builder.setTitle(getResources().getString(R.string.range));
-                builder.setSingleChoiceItems(charSequences, -1, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        rangeAnInt = ((i + 1) *2) * 100;
-                        Log.d("17novV1", "range ==> " + rangeAnInt);
-                        rangeButton.setText(charSequences[i].toString());
-                        dialogInterface.dismiss();
-                    }
-                });
-                builder.show();
+                favoriteAnInt = 1;
+                Toast.makeText(AddValue.this, getResources().getString(R.string.favorite) + " แล้ว !! ", Toast.LENGTH_SHORT).show();
 
-
-            } //onClick
+            }//onClick
         });
 
-        //soundButton Controller
+        //saveButton Controller
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+            }//onClick
+        });
+    }
+
+    private void soundButtonController() {
         soundButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                final CharSequence[] charSequences = new CharSequence[]{"Bird","Cat","Cow","Dog","Elephant"};
+                final CharSequence[] charSequences = new CharSequence[]{"Bird", "Cat", "Cow", "Dog", "Elephant"};
                 final int[] ints = new int[]{R.raw.bird, R.raw.cat, R.raw.cow, R.raw.dog, R.raw.elephant};
                 AlertDialog.Builder builder = new AlertDialog.Builder(AddValue.this);
                 builder.setCancelable(false);
@@ -93,37 +103,43 @@ public class AddValue extends FragmentActivity implements OnMapReadyCallback {
 
             } //onClick
         });
+    }
 
-
-        //FavoriteButton Controller
-        favoriteButton.setOnClickListener(new View.OnClickListener() {
+    private void rangButtonController() {
+        rangeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                favoriteAnInt = 1;
-                Toast.makeText(AddValue.this, getResources().getString(R.string.favorite) + " แล้ว !! ",Toast.LENGTH_SHORT).show();
+                final CharSequence[] charSequences = new CharSequence[]{"200 เมตร", "400 เมตร", "600 เมตร", "800 เมตร"};
+                AlertDialog.Builder builder = new AlertDialog.Builder(AddValue.this);
+                builder.setCancelable(false);
+                builder.setIcon(R.drawable.doremon48);
+                builder.setTitle(getResources().getString(R.string.range));
+                builder.setSingleChoiceItems(charSequences, -1, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        rangeAnInt = ((i + 1) * 2) * 100;
+                        Log.d("17novV1", "range ==> " + rangeAnInt);
+                        rangeButton.setText(charSequences[i].toString());
+                        dialogInterface.dismiss();
+                    }
+                });
+                builder.show();
 
-            }//onClick
+
+            } //onClick
         });
 
-        //saveButton Controller
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+    }
 
+    private void bindWidget() {
+        editText = (EditText) findViewById(R.id.editText);
+        rangeButton = (Button) findViewById(R.id.button2);
+        soundButton = (Button) findViewById(R.id.button3);
+        favoriteButton = (Button) findViewById(R.id.button4);
+        saveButton = (Button) findViewById(R.id.button5);
 
-
-            }//onClick
-        });
-
-
-
-
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
-    } // Main Method
+    }
 
     private void playSound(int anInt) {
 
