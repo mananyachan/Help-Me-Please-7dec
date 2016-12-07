@@ -18,6 +18,7 @@ public class MyConstant {
         return titleLocateString;
     }
 
+
     public String getMessageLocateString() {
         messageLocateString = "mesage";
         return messageLocateString;
