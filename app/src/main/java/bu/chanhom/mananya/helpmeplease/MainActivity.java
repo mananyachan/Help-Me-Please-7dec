@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
     private double latADouble, lngADouble;
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
