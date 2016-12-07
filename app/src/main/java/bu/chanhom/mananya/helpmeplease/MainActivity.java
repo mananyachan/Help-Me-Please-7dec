@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
             latStrings, lngStrings, actionStrings;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
             String[] titleStrings = new String[cursor.getCount()];
 
-            for (int i=0;i<cursor.getCount();i++) {
+            for (int i = 0; i < cursor.getCount(); i++) {
                 titleStrings[i] = cursor.getString(cursor.getColumnIndex(MyManage.column_Title));
                 cursor.moveToNext();
             }   //for
