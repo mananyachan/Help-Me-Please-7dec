@@ -14,33 +14,33 @@ public class MyConstant {
             R.drawable.kon48, R.drawable.nobita48, R.drawable.rat48};
 
     public String getTitleLocateString() {
-        titleLocateString = "title";
+        titleLocateString = "ปลายทางที่ต้องการไป";
         return titleLocateString;
     }
 
 
     public String getMessageLocateString() {
-        messageLocateString = "mesage";
+        messageLocateString = "กรุณาระบุปลายทาง";
         return messageLocateString;
     }
 
     public String getTitleSoundString() {
-        titleSoundString = "title";
+        titleSoundString = "เสียงแจ้งเตือน";
         return titleSoundString;
     }
 
     public String getMessageSoundString() {
-        messageSoundString = "message";
+        messageSoundString = "กรุณาเลือกเสียงแจ้งเตือน";
         return messageSoundString;
     }
 
     public String getTitleRangString() {
-        titleRangString = "titleRange";
+        titleRangString = "ระยะทาง";
         return titleRangString;
     }
 
     public String getMessageRangString() {
-        messageRangString = "message";
+        messageRangString = "กรุณาเลือกระยะทาง";
         return messageRangString;
     }
 
@@ -49,12 +49,12 @@ public class MyConstant {
     }
 
     public String getTitleHaveSpaceString() {
-        titleHaveSpaceString = "มีช่องว่าง";
+        titleHaveSpaceString = "กรอกข้อมูลไม่ครบ";
         return titleHaveSpaceString;
     }
 
     public String getMessageHaveSpaceString() {
-        messageHaveSpaceString = "กรุณากรอกทุกช่องคะ";
+        messageHaveSpaceString = "กรุณากรอกให้ครบถ้วน";
         return messageHaveSpaceString;
     }
 }   // Main Class
