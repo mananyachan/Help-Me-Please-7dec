@@ -31,6 +31,7 @@ public class AddValue extends FragmentActivity implements OnMapReadyCallback {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.my_addvalue_layout);
 
+
         //Bind Widget
         bindWidget();
 
