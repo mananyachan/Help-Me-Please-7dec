@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d("7decV4", "lng ==> " + lngADouble);
 
         //Calculate All Point Where action = 0
+        calculateAllPoint(latADouble, lngADouble);
 
 
         Handler handler = new Handler();
@@ -88,10 +89,44 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 myLoop();
             }
-        }, 1000);
+        }, 5000);
 
 
     }   // myLoop
+
+    private void calculateAllPoint(double latADouble, double lngADouble) {
+
+        try {
+
+            String tag = "11febV1";
+
+            SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
+                    MODE_PRIVATE, null);
+            Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM helpTABLE WHERE Action = 0", null);
+            cursor.moveToFirst();
+            Log.d("11febV1", "cursor.getCount ==> " + cursor.getCount());
+
+            for (int i=0;i<cursor.getCount();i++) {
+
+                double lat2 = Double.parseDouble(cursor.getString(cursor.getColumnIndex(MyManage.column_Lat)));
+                double lng2 = Double.parseDouble(cursor.getString(cursor.getColumnIndex(MyManage.column_Lng)));
+                Log.d(tag, "lat2 ==> " + lat2);
+                Log.d(tag, "lng2 ==> " + lng2);
+                double douDistance = distance(latADouble, lngADouble,
+                        Double.parseDouble(cursor.getString(5)), Double.parseDouble(cursor.getString(6)));
+                Log.d(tag, "Distance ==> " + douDistance);
+                cursor.moveToNext();
+
+            }   // for
+
+
+            cursor.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }   // calculate
 
 
     //นี่คือ เมทอด ที่หาระยะ ระหว่างจุด
@@ -100,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
         double dist = Math.sin(deg2rad(lat1)) * Math.sin(deg2rad(lat2)) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.cos(deg2rad(theta));
         dist = Math.acos(dist);
         dist = rad2deg(dist);
-        dist = dist * 60 * 1.1515 * 1.609344;
+        dist = dist * 60 * 1.1515 * 1609.344;
 
 
         return (dist);
