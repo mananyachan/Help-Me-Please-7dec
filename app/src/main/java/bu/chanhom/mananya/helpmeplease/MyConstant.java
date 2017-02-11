@@ -12,6 +12,11 @@ public class MyConstant {
             titleLocateString, messageLocateString;
     private int[] avataInts = new int[]{R.drawable.bird48, R.drawable.doremon48,
             R.drawable.kon48, R.drawable.nobita48, R.drawable.rat48};
+    private int[] soundInts = new int[]{R.raw.bird, R.raw.cat, R.raw.cow, R.raw.dog, R.raw.elephant};
+
+    public int[] getSoundInts() {
+        return soundInts;
+    }
 
     public String getTitleLocateString() {
         titleLocateString = "ปลายทางที่ต้องการไป";
