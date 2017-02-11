@@ -23,11 +23,11 @@ public class AddValue extends FragmentActivity implements OnMapReadyCallback {
     //Explicit
     private GoogleMap mMap;
     private EditText editText;
-    private Button rangeButton, soundButton, favoriteButton, saveButton;
-    private int rangeAnInt, soundAnInt, favoriteAnInt = 0;
+    private Button rangeButton, soundButton, saveButton;
+    private int rangeAnInt, soundAnInt, favoriteAnInt = 1;
     private double latADouble, lngADouble;
     private String titleString, rangeString, soundString,
-            favoriteString = "0", latString, lngString;
+            favoriteString = "1", latString, lngString;
     private MyConstant myConstant;
     private int[] avataInts;
     private boolean rangABoolean = true, soundABoolean = true, locationABoolean = true;
@@ -54,7 +54,7 @@ public class AddValue extends FragmentActivity implements OnMapReadyCallback {
         soundButtonController();
 
         //FavoriteButton Controller
-        fraoriteButtonController();
+        //fraoriteButtonController();
 
         //Save Button
         saveButtonController();
@@ -127,20 +127,7 @@ public class AddValue extends FragmentActivity implements OnMapReadyCallback {
 
     }
 
-    private void fraoriteButtonController() {
-        favoriteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                favoriteAnInt = 1;
-                favoriteString = Integer.toString(favoriteAnInt);
-                Toast.makeText(AddValue.this, getResources().getString(R.string.favorite) + " แล้ว !! ", Toast.LENGTH_SHORT).show();
-
-            }//onClick
-        });
-
-
-    }
 
     private void soundButtonController() {
         soundButton.setOnClickListener(new View.OnClickListener() {
@@ -211,7 +198,7 @@ public class AddValue extends FragmentActivity implements OnMapReadyCallback {
         editText = (EditText) findViewById(R.id.editText);
         rangeButton = (Button) findViewById(R.id.button2);
         soundButton = (Button) findViewById(R.id.button3);
-        favoriteButton = (Button) findViewById(R.id.button4);
+
         saveButton = (Button) findViewById(R.id.button5);
 
     }
