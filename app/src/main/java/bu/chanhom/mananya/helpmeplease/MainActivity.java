@@ -1,5 +1,8 @@
 package bu.chanhom.mananya.helpmeplease;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -7,9 +10,12 @@ import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -115,6 +121,13 @@ public class MainActivity extends AppCompatActivity {
                 double douDistance = distance(latADouble, lngADouble,
                         Double.parseDouble(cursor.getString(5)), Double.parseDouble(cursor.getString(6)));
                 Log.d(tag, "Distance ==> " + douDistance);
+
+                if (douDistance <= Double.parseDouble(cursor.getString(2))) {
+                    Log.d(tag, "ใกล้ " + cursor.getString(1));
+                    myNotification(cursor.getString(0), cursor.getString(1));
+                }
+
+
                 cursor.moveToNext();
 
             }   // for
@@ -127,6 +140,33 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }   // calculate
+
+    private void myNotification(String strID, String strPlate) {
+
+        SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
+                MODE_PRIVATE, null);
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(MyManage.column_Action, "1");
+        sqLiteDatabase.update(MyManage.table_name, contentValues,
+                "_id=" + Integer.parseInt(strID), null);
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+        builder.setSmallIcon(R.drawable.doremon48);
+        builder.setTicker("Help Me Please Arrive " + strPlate );
+        builder.setWhen(System.currentTimeMillis());
+        builder.setContentTitle(strPlate);
+        builder.setContentText("Help Me Please Arrive " + strPlate );
+        builder.setAutoCancel(false);
+
+
+        Uri soundUri = RingtoneManager.getDefaultUri(Notification.DEFAULT_SOUND);
+        builder.setSound(soundUri);
+
+        android.app.Notification notification = builder.build();
+        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        notificationManager.notify(1000, notification);
+
+    }   // myNoti
 
 
     //นี่คือ เมทอด ที่หาระยะ ระหว่างจุด
