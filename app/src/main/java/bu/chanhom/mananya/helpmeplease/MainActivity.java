@@ -158,9 +158,6 @@ public class MainActivity extends AppCompatActivity {
         builder.setContentText("Help Me Please Arrive " + strPlate);
         builder.setAutoCancel(true);
 
-
-
-
         //Set Sound
         MyConstant myConstant = new MyConstant();
         int[] ints = myConstant.getSoundInts();
@@ -170,15 +167,14 @@ public class MainActivity extends AppCompatActivity {
                 ints[indexSound]);
         builder.setSound(soundUri, RingtoneManager.TYPE_ALARM);
 
-
         android.app.Notification notification = builder.build();
 
         notification.flags |= Notification.DEFAULT_LIGHTS
                 | Notification.FLAG_AUTO_CANCEL
                 | Notification.FLAG_ONLY_ALERT_ONCE;
 
-
-        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        NotificationManager notificationManager = (NotificationManager)
+                getSystemService(NOTIFICATION_SERVICE);
         notificationManager.notify(1000, notification);
 
     }   // myNoti
@@ -187,22 +183,23 @@ public class MainActivity extends AppCompatActivity {
     //นี่คือ เมทอด ที่หาระยะ ระหว่างจุด
     private static double distance(double lat1, double lon1, double lat2, double lon2) {
         double theta = lon1 - lon2;
-        double dist = Math.sin(deg2rad(lat1)) * Math.sin(deg2rad(lat2)) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.cos(deg2rad(theta));
+        double dist = Math.sin(deg2rad(lat1)) * Math.sin(deg2rad(lat2)) +
+                Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.cos(deg2rad(theta));
         dist = Math.acos(dist);
         dist = rad2deg(dist);
         dist = dist * 60 * 1.1515 * 1609.344;
 
 
         return (dist);
-    }
+    }   // distance
 
     private static double deg2rad(double deg) {
         return (deg * Math.PI / 180.0);
-    }
+    }   // deg2rad
 
     private static double rad2deg(double rad) {
         return (rad * 180 / Math.PI);
-    }
+    }   // rad2deg
 
 
     @Override
