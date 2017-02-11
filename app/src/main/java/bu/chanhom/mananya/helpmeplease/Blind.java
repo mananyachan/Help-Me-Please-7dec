@@ -50,6 +50,8 @@ public class Blind extends AppCompatActivity {
 
 
 
+
+
             }   // onItemClick
         });
 
