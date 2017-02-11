@@ -154,8 +154,10 @@ public class MainActivity extends AppCompatActivity {
 
         SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
                 MODE_PRIVATE, null);
+
         ContentValues contentValues = new ContentValues();
         contentValues.put(MyManage.column_Action, "1");
+
         sqLiteDatabase.update(MyManage.table_name, contentValues,
                 "_id=" + Integer.parseInt(strID), null);
 
