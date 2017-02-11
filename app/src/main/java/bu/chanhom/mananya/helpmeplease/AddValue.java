@@ -118,7 +118,7 @@ public class AddValue extends FragmentActivity implements OnMapReadyCallback {
         Log.d("7decV2", "Lng = " + lngString);
 
         myManage.addValue(titleString, rangeString, soundString,
-                favoriteString, latString, latString);
+                favoriteString, latString, lngString);
 
         Toast.makeText(AddValue.this, "Save Data OK", Toast.LENGTH_SHORT).show();
 
