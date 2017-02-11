@@ -66,6 +66,10 @@ public class MainActivity extends AppCompatActivity {
 
     } //Main Method
 
+    public void clickBlind(View view) {
+        startActivity(new Intent(MainActivity.this, Blind.class));
+    }
+
     private void myLoop() {
         //My To do
         Location networkLocation = myFindLocation(LocationManager.NETWORK_PROVIDER);

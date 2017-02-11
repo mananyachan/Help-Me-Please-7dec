@@ -43,5 +43,14 @@
         android:layout_height="match_parent"
         android:layout_below="@id/linTopMain"
         android:layout_marginTop="20dp"
-        android:id="@+id/livFavorite" />
+        android:id="@+id/livFavorite"
+        android:layout_above="@+id/button4" />
+
+    <Button
+        android:text="for Blind"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button4"
+        android:onClick="clickBlind"
+        android:layout_alignParentBottom="true" />
 </RelativeLayout>
