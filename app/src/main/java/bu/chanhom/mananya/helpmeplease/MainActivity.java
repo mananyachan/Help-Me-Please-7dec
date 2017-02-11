@@ -54,7 +54,12 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, AddValue.class));
+
+                Intent intent = new Intent(MainActivity.this, AddValue.class);
+                intent.putExtra("Lat", latADouble);
+                intent.putExtra("Lng", lngADouble);
+                startActivity(intent);
+
             }
         });
 

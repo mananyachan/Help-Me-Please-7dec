@@ -25,7 +25,7 @@ public class AddValue extends FragmentActivity implements OnMapReadyCallback {
     private EditText editText;
     private Button rangeButton, soundButton, saveButton;
     private int rangeAnInt, soundAnInt, favoriteAnInt = 1;
-    private double latADouble, lngADouble;
+    private double latADouble, lngADouble, centerLatADouble, centerLngADouble;
     private String titleString, rangeString, soundString,
             favoriteString = "1", latString, lngString;
     private MyConstant myConstant;
@@ -42,6 +42,8 @@ public class AddValue extends FragmentActivity implements OnMapReadyCallback {
         myConstant = new MyConstant();
         avataInts = myConstant.getAvataInts();
         myManage = new MyManage(AddValue.this);
+        centerLatADouble = getIntent().getDoubleExtra("Lat", 13.711390);
+        centerLngADouble = getIntent().getDoubleExtra("Lng", 100.581730);
 
 
         //Bind Widget
@@ -222,8 +224,17 @@ public class AddValue extends FragmentActivity implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        LatLng centerLatLng = new LatLng(13.711390, 100.581730);
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(centerLatLng, 16));
+        try {
+
+
+
+            LatLng centerLatLng = new LatLng(centerLatADouble, centerLngADouble);
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(centerLatLng, 16));
+
+        } catch (Exception e) {
+            LatLng centerLatLng = new LatLng(13.711390, 100.581730);
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(centerLatLng, 16));
+        }
 
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
